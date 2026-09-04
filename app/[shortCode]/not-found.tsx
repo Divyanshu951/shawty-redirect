@@ -41,7 +41,7 @@ const NotFoundPage = () => {
 
           <div className="flex items-center justify-center">
             <Image
-              src="/notfound-image.png"
+              src="/not-found-image.png"
               alt="not found"
               height={900}
               width={900}
