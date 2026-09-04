@@ -4,21 +4,95 @@
   --background: #ffffff;
   --foreground: #171717;
 
+  /* Primary colors */
   --primary: #f97316;
   --primary-dark: #9d4300;
+
+  /* Conflicting primary colors with -secondary prefix */
+  --primary-secondary: #c2410c;
+
+  /* Surface & Container colors */
+  --surface: #fff8f5;
+  --surface-dim: #e0d8d5;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #faf2ee;
+  --surface-container: #f4ece8;
+  --surface-container-high: #eee7e3;
+  --surface-container-highest: #e9e1dd;
+
+  /* Theme & Accent colors */
+  --primary-hover: #9a3412;
+  --primary-container: #ffece7;
+  --secondary: #a53c19;
+  --on-surface: #1e1b19;
+  --on-surface-variant: #59413a;
+  --outline: #8d7168;
+  --outline-variant: #e1bfb5;
+
+  /* Terracotta shade scale */
+  --color-terracotta-50: #fff7ed;
+  --color-terracotta-100: #ffedd5;
+  --color-terracotta-200: #fed7aa;
+  --color-terracotta-500: #f97316;
+  --color-terracotta-600: #ea580c;
+  --color-terracotta-700: #c2410c;
+  --color-terracotta-800: #9a3412;
+
+  /* Shadows */
+  --shadow-clay:
+    0 20px 40px -15px rgba(194, 65, 12, 0.07),
+    0 0 20px -3px rgba(30, 27, 25, 0.04);
+  --shadow-clay-button: 0 10px 25px -5px rgba(194, 65, 12, 0.35);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
+  /* Primary color definitions */
   --color-primary: var(--primary);
   --color-primary-dark: var(--primary-dark);
+  --color-primary-secondary: var(--primary-secondary);
 
-  /* Fonts  */
+  /* Surface colors */
+  --color-surface: var(--surface);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+
+  /* Additional colors */
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-container: var(--primary-container);
+  --color-secondary: var(--secondary);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+
+  /* Terracotta scale */
+  --color-terracotta-50: var(--color-terracotta-50);
+  --color-terracotta-100: var(--color-terracotta-100);
+  --color-terracotta-200: var(--color-terracotta-200);
+  --color-terracotta-500: var(--color-terracotta-500);
+  --color-terracotta-600: var(--color-terracotta-600);
+  --color-terracotta-700: var(--color-terracotta-700);
+  --color-terracotta-800: var(--color-terracotta-800);
+
+  /* Fonts */
   --font-bricolage: var(--font-bricolage-grotesque);
-  --font-jakarta: var(--font-plus-jakarta-sans);
-  --font-space: var(--font-space-mono);
+  --font-jakarta: var(--font-jakarta);
+  --font-mono: var(--font-space-mono);
+
+  /* Font aliases added from config */
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-mono-secondary: "JetBrains Mono", monospace;
+
+  /* Shadows */
+  --shadow-clay: var(--shadow-clay);
+  --shadow-clay-button: var(--shadow-clay-button);
 }
 
 body {
