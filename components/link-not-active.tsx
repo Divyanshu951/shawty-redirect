@@ -20,8 +20,8 @@ const LinkNotActive = () => {
 
             <div className="space-y-4 text-base leading-relaxed text-gray-600">
               <p>
-                The URL you are trying to access exists, but it has been turned
-                off or paused by the link owner.
+                The URL you are trying to access exists, but it has{" "}
+                <strong>expired or paused</strong> by the link owner.
               </p>
               <p>
                 If you believe this is an error, please contact the person or
