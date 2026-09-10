@@ -46,8 +46,6 @@ export default async function Home({
 
   const metadata = await getMetadata(link.destinationUrl);
 
-  console.log(link.count);
-
   return (
     <>
       <Header />

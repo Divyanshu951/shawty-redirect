@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import {
   pgTable,
   uuid,
@@ -6,8 +7,9 @@ import {
   timestamp,
   integer,
   boolean,
+  index,
 } from "drizzle-orm/pg-core";
-import { user } from "@/db/schemas/better-auth-schema"; // adjust to your actual users table
+import { user } from "@/db/schemas/better-auth-schema";
 
 export const urlTable = pgTable(
   "urls",
@@ -31,36 +33,41 @@ export const urlTable = pgTable(
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),
   },
-  // },
-  // (table) => [
-  //   // dashboard: "my links, newest first"
-  //   index("urls_user_created_idx").on(table.userId, table.createdAt),
-  // ],
+  (table) => [index("urls_user_created_idx").on(table.userId, table.createdAt)],
 );
 
-// export const clicks = pgTable(
-//   "clicks",
-//   {
-//     id: uuid("id").defaultRandom().primaryKey(),
+export const clicks = pgTable(
+  "clicks",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
 
-//     urlId: uuid("url_id")
-//       .notNull()
-//       .references(() => urlTable.id, { onDelete: "cascade" }),
+    urlId: uuid("url_id")
+      .notNull()
+      .references(() => urlTable.id, { onDelete: "cascade" }),
 
-//     ipAddress: varchar("ip_address", { length: 45 }),
+    ipAddress: varchar("ip_address", { length: 45 }),
 
-//     country: varchar("country", { length: 100 }),
-//     city: varchar("city", { length: 100 }),
-//     browser: varchar("browser", { length: 100 }),
-//     os: varchar("os", { length: 100 }),
-//     device: varchar("device", { length: 100 }),
+    country: varchar("country", { length: 100 }),
+    city: varchar("city", { length: 100 }),
+    browser: varchar("browser", { length: 100 }),
+    os: varchar("os", { length: 100 }),
+    device: varchar("device", { length: 100 }),
 
-//     referrer: text("referrer"),
+    referrer: text("referrer"),
 
-//     clickedAt: timestamp("clicked_at").defaultNow().notNull(),
-//   },
-//   (table) => [
-//     // "clicks for this URL, most recent first"
-//     index("clicks_url_clicked_idx").on(table.urlId, table.clickedAt),
-//   ],
-// );
+    clickedAt: timestamp("clicked_at").defaultNow().notNull(),
+  },
+  (table) => [index("clicks_url_clicked_idx").on(table.urlId, table.clickedAt)],
+);
+
+// ── Relations ──────────────────────────────────────────────
+export const urlRelations = relations(urlTable, ({ many }) => ({
+  clicks: many(clicks),
+}));
+
+export const clickRelations = relations(clicks, ({ one }) => ({
+  url: one(urlTable, {
+    fields: [clicks.urlId],
+    references: [urlTable.id],
+  }),
+}));
